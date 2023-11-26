@@ -21,11 +21,11 @@
             <input type="text" name="search" id="search-field" class="search-field" placeholder="Search">
         </div>
         <div class="nav-items">
-            <div class="notification-btn">
+            <button class="notification-btn">
                 <svg class="bell-icon" width="41" height="40" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M7.75203 14.4239L5.3061 14.1427C3.45144 13.9295 2.92542 11.4844 4.52838 10.5274L4.5933 10.4886C5.466 9.96761 6.00045 9.02609 6.00045 8.00969V7.5C6.00045 5.01472 8.01517 3 10.5005 3C12.9857 3 15.0005 5.01472 15.0005 7.5V8.00969C15.0005 9.02609 15.5349 9.96761 16.4076 10.4886L16.4725 10.5274C18.0755 11.4844 17.5495 13.9295 15.6948 14.1427L13.152 14.435V14.8C13.152 16.2912 11.9432 17.5 10.452 17.5C8.96086 17.5 7.75203 16.2912 7.75203 14.8V14.4239ZM11.652 14.5H9.25203V14.8C9.25203 15.4627 9.78929 16 10.452 16C11.1148 16 11.652 15.4627 11.652 14.8V14.5ZM8.50045 13H12.5005L15.5235 12.6525C15.953 12.6032 16.0748 12.0369 15.7036 11.8153L15.6387 11.7766C15.5591 11.7291 15.4815 11.6793 15.4057 11.6273C15.2506 11.521 15.1036 11.4055 14.9651 11.2818C14.9405 11.2598 14.9162 11.2377 14.8922 11.2152C14.0144 10.395 13.5005 9.23833 13.5005 8.00969V7.5C13.5005 5.84315 12.1573 4.5 10.5005 4.5C8.8436 4.5 7.50045 5.84315 7.50045 7.5V8.00969C7.50045 9.23833 6.98651 10.395 6.10871 11.2152C6.08469 11.2377 6.06039 11.2598 6.03583 11.2818C5.89734 11.4055 5.75029 11.521 5.59523 11.6273C5.51945 11.6793 5.44176 11.7291 5.36222 11.7766L5.29729 11.8153C4.9261 12.0369 5.0479 12.6032 5.47739 12.6525L8.50045 13Z" fill="#fff"/>
                 </svg>   
-            </div>
+            </button>
             <button class="menu-btn">
                 <p class="profile-name">Davii Collections</p>
                 <div class="profile-initials">DC</div>
@@ -72,11 +72,14 @@
             <div class="guide-popup">
                 <div class="popup-item">
                     <div class="popup-content">
-                        <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <div class="popup-header">
+                            <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" />
-                        </svg>
+                            </svg>
+                            <h2 class="popup-h2">Customize your online store</h2>
+                        </div>
+                        
                         <div class="popup-info">
-                            <h2 class="popup-header">Customize your online store</h2>
                             <p class="popup-description">Choose a theme and add your logo, colors, and images to reflect your brand. <a class="learn-more-link" target="_blank" href="https://help.shopify.com/en/manual/online-store/themes/customizing-themes">Learn more</a></p>
                             <button class="popup-btn">Customize theme</button>
                         </div>
@@ -85,11 +88,13 @@
                 </div>
                 <div class="popup-item">
                     <div class="popup-content">
-                        <svg  class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <div class="popup-header">
+                            <svg  class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" />
-                        </svg>
+                            </svg>
+                            <h2 class="popup-h2">Add your first product</h2>
+                        </div>
                         <div class="popup-info">
-                            <h2 class="popup-header">Add your first product</h2>
                             <p class="popup-description">Write a description, add photos, and set pricing for the products you plan to sell. <a class="learn-more-link" target="_blank" href="https://help.shopify.com/en/manual/products/add-update-products">Learn more</a></p>
                             <div class="product-btns">
                                 <button class="popup-btn">Add product</button>
@@ -102,43 +107,55 @@
                 </div>
                 <div class="popup-item">
                     <div class="popup-content">
-                        <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <div class="popup-header">
+                            <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" />
-                        </svg>
+                            </svg>
+                            <h2 class="popup-h2">Add a custom domain</h2>
+                        </div>
+                        
                         <div class="popup-info">
-                            <h2 class="popup-header">Add a custom domain</h2>
                             <p class="popup-description">Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a class="learn-more-link" target="_blank" href="https://help.shopify.com/en/manual/domains">Learn more</a></p>
                             <button class="popup-btn">Add domain</button>
                         </div>
                     </div>
                     <img src="https://crushingit.tech/hackathon-assets/website.png" alt="Add Domain" class="popup-img">
                 </div>
+
                 <div class="popup-item">
                     <div class="popup-content">
-                        <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <div class="popup-header">
+                            <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" />
                         </svg>
+                        <h2 class="popup-h2">Name your store</h2>
+                        </div>
+                        
                         <div class="popup-info">
-                            <h2 class="popup-header">Name your store</h2>
                             <p class="popup-description">Your temporary store name is currently Davii collections. The store name appears in your admin and your online store. <a class="learn-more-link" target="_blank" href="https://help.shopify.com/en/manual/intro-to-shopify/initial-setup/setup-business-settings#set-or-change-your-online-store-name-and-legal-business-name">Learn more</a></p>
                             <button class="popup-btn">Name store</button>
                         </div>
                     </div>
                     <img src="https://crushingit.tech/hackathon-assets/name-store.png" alt="Name Store" class="popup-img">
                 </div>
+
                 <div class="popup-item">
                     <div class="popup-content">
-                        <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <div class="popup-header">
+                            <svg class="check-img" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none">
                             <circle cx="16" cy="16" r="12" stroke="#8A8A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 6" />
-                        </svg>
+                            </svg>
+                            <h2 class="popup-h2">Set up a payment provider</h2>
+                        </div>
+                       
                         <div class="popup-info">
-                            <h2 class="popup-header">Set up a payment provider</h2>
                             <p class="popup-description">Choose a payment provider to start accepting payments. You'll need to create an account with the payment provider and set it up with your Shopify store. <a class="learn-more-link" target="_blank" href="https://help.shopify.com/en/manual/payments">Learn more</a></p>
                             <button class="popup-btn">Set up payment</button>
                         </div>
                     </div>
                     <img src="https://crushingit.tech/hackathon-assets/payment.png" alt="Set up Payment" class="popup-img">
                 </div>
+
             </div>
         </div>
     </div>

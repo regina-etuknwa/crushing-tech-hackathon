@@ -89,9 +89,8 @@ svg {
     color: var(--white)
 }
 
-/* how to remove border when typing */
 .search-field:focus, .search-field:active {
-    border: none;
+    outline: none;
 }
 
 .nav-items{
@@ -117,12 +116,12 @@ svg {
     background: var(--nav-50, #656266);
 }
 
-/* why are you not working */
 .notification-btn:focus{
     background: var(--nav-50, #656266);
-    border: none;
+    outline: none;
     box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #000;
 }
+
 .bell-icon {
     width: 20px;
     height: 20px;
@@ -150,7 +149,7 @@ svg {
 /* why do you have a white border? */
 .menu-btn:focus {
     background: var(--nav-50, #656266);
-    border: none;
+    outline: none;
     box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #000;
 }
 
@@ -218,12 +217,26 @@ svg {
     font-weight: 600;
     line-height: 130%; /* 15.6px */
     padding: 6px 12px;
-    border: none;
     border-radius: 6px;
-
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    box-shadow: 0px -1px 0px 0px #B5B5B5 inset;
 }
 
-.close-trial-callout-btn{
+.select-plan-btn:hover {
+    background-color: #F7F7F7;
+}
+
+.select-plan-btn:active {
+    background-color: #F7F7F7;
+    box-shadow: 0px 2px 1.5px 0px #E2E2E2 inset;
+}
+
+.select-plan-btn:focus {
+    box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #FFF, 0px -1px 0px 0px #B5B5B5 inset;
+    outline: none;
+}
+
+.close-trial-callout-btn {
     padding: 6px;
     height: 32px;
     background-color: transparent;
@@ -290,6 +303,7 @@ svg {
 .guide-toggle-button:focus {
     background-color: var(--white);
     border: 2px solid var(--focused);
+    /* outline: none; */
 }
 
 .guide-toggle-arrow {
@@ -352,14 +366,20 @@ svg {
 
 .popup-content {
     display: flex;
+    flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+}
+
+.popup-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .check-img {
     width: 24px;
     height: 24px;
-    
 }
 
 .popup-info {
@@ -367,9 +387,10 @@ svg {
     flex-direction: column;
     gap: 16px;
     width: 484px;
+    margin-left: 32px;
 }
 
-.popup-header {
+.popup-h2 {
     color: var(--font-dark, #303030);
     /* Text-13/semi bold */
     font-family: Inter;
