@@ -382,18 +382,32 @@ body {
     font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+@keyframes zoom-in-spin {
+    from {
+        transform: scale(0) rotate(270deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 svg {
     max-width: 100%;
     max-height: 100%;
 }
 
-.hidden {
-    visibility: hidden;
-}
 
-.display-none {
-    display: none;
-}
 
 .nav-bar {
     display: flex;
@@ -480,6 +494,85 @@ svg {
     background: var(--nav-50, #656266);
     outline: 2px solid #005BD3;
     outline-offset: 1px;
+}
+
+.notification-popup {
+    display: none;
+    background-color: var(--white);
+    position: absolute;
+    top: 64px;
+    right: 16px;
+    max-width: 385px;
+    padding: 16px;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--s-50, #DBDBDB);
+    background: var(--White, #FFF);
+    
+    /* Drop Shadow */
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+    
+}
+
+.notification-active {
+    display: flex;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+}
+
+.notification-heading {
+    color: var(--font-dark, #303030);
+
+    /* Text-14/semi bold */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 19.6px */
+}
+
+.notification-header-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.notification-icon {
+    border: none;
+    background-color: transparent;
+}
+
+.notification-icon:focus {
+    stroke-width: 1px;
+    border: 1px solid var(--focused, #005BD3);
+    border-radius: 4px;
+    transition: all 100ms ease-in;
+    outline: none;
+}
+
+.notification-body {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--hover, #F1F1F1);
+    max-width: 100%;
+}
+
+.notification-text {
+    color: var(--font-mid, #616161);
+
+    /* Text-13/semi bold */
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 18.2px */
 }
 
 .bell-icon {
@@ -751,8 +844,7 @@ svg {
     border-radius: 18px;
     border: 1px solid var(--s-50, #DBDBDB);
     box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
-    margin: auto;
-    margin-top: 16px;
+    margin: 16px auto;
 }
 
 .guide-intro {
@@ -855,8 +947,8 @@ svg {
     display: flex;
     justify-content: space-between;
     padding: 8px 8px 12px 8px;
-    background-color: var(--background-color);
     border-radius: 10px;
+    background-color: var(--background-color);
 }
 
 .popup-content {
@@ -872,9 +964,44 @@ svg {
     align-items: center;
 }
 
+.checkbox {
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 100ms ease-in;
+    width: 24px;
+    height: 24px;
+}
+
+.checkbox:focus{
+    outline: 2px solid var(--focused);
+}
+
+.checkbox:focus .not-completed-icon circle {
+    fill: #D9D9D9;
+    stroke-dasharray: 0 0;
+}
+
+.checkbox:hover .not-completed-icon circle {
+    stroke-dasharray: 0 0;
+}
+
 .checkbox-img {
     width: 24px;
     height: 24px;
+}
+
+.loading-spinner-icon {
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.completed-icon {
+    animation-name: zoom-in-spin;
+    animation-duration: 50ms;
+    animation-timing-function: linear;
 }
 
 .popup-info {
@@ -1003,3 +1130,19 @@ svg {
     background: url(<path-to-image>), lightgray 50% / cover no-repeat;
     background-color: transparent;
 }
+
+
+.hidden {
+    visibility: hidden;
+}
+
+.display-none {
+    display: none;
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+
+/* import btn hover states not working */
