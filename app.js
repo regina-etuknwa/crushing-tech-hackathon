@@ -1,5 +1,5 @@
 function app() {
-    const closeTrialCalloutBtn = document.querySelector(".close-trial-callout-btn");
+    const allCloseTrialCalloutBtns = document.querySelectorAll(".close-trial-callout-btn");
     const trialCallout = document.querySelector(".trial-callout");
 
     const guideToggleBtn = document.querySelector('.guide-toggle-button');
@@ -17,6 +17,9 @@ function app() {
     const notificationPopup = document.querySelector(".notification-popup");
     const notificationIcons = document.querySelectorAll(".notification-icon");
 
+    const notificationWrapper = document.querySelector(".notification-wrapper");
+    const menuWrapper = document.querySelector(".menu-wrapper");
+
     const allPopupCards = document.querySelectorAll(".popup-item");
 
     const allCheckboxes = document.querySelectorAll(".checkbox");
@@ -26,9 +29,6 @@ function app() {
     const progressBarFill = progressBar.querySelector(".progress-bar-fill");
 
 
-    // how to close the menu by clicking elsewhere on the screen
-    // fix handleNotificationTabKeypress()
-
     function closeMenu () {
         menuTrigger.attributes['aria-expanded'].value = "false";
         menuTrigger.focus();
@@ -37,8 +37,6 @@ function app() {
     }
 
     function handleMenuEscapeKeypress (event) {
-        // console.log("i work");
-
         if(event.key === "Escape"){
             toggleMenu();
         }
@@ -51,6 +49,7 @@ function app() {
         const lastMenuItem = allMenuItems.item(allMenuItems.length -1);
         const nextMenuItem = allMenuItems.item(menuItemIndex + 1);
         const previousMenuItem = allMenuItems.item(menuItemIndex - 1);
+
 
         if (event.key === "ArrowDown" || event.key === "ArrowRight"){
             if (isLastMenuItem){
@@ -68,7 +67,6 @@ function app() {
             }
         }
 
-
     }
 
     function openMenu () {
@@ -80,16 +78,17 @@ function app() {
         allMenuItems.forEach((menuItem, menuItemIndex) => {
             menuItem.addEventListener('keyup', (event) => {
                 handleMenuArrowKeypress(event, menuItemIndex);
+                console.log(menuItemIndex);
             } )
         })
 
-        // document.body.addEventListener('click', (event) => {
-        //     const targetElement = event.target;
-        //     // Check if the clicked element is outside the popup menu
-        //     if (!menu.contains(targetElement)) {
-        //       toggleMenu();
-        //     }
-        //   });
+        // menu.addEventListener('focusout', (event) => {
+    //     if (!menu.contains(event.relatedTarget) && event.relatedTarget !== menuTrigger) {
+    //         toggleMenu();
+    //       }
+        
+    // }
+    // ); 
     }
 
     function toggleMenu () {
@@ -99,8 +98,10 @@ function app() {
 
         if (isExpanded) {
             closeMenu();
+            console.log("closed menu");
         } else {
             openMenu();
+            console.log("opened menu");
         }
 
         // console.log("toggled menu");
@@ -121,50 +122,28 @@ function app() {
     }
 
     // HELP!!!!!!
-    function handleNotificationTabKeypress(event, iconIndex) {
-        // if on last icon, toggle back to first
+    // function handleNotificationTabKeypress(event, iconIndex) {
+    //     // if on last icon, toggle back to first
 
-        const isLastIcon = iconIndex === notificationIcons.length - 1;
-        const firstIcon = notificationIcons.item(0);
-        const nextIcon = notificationIcons.item(iconIndex + 1);
-        const lastIcon= notificationIcons.item(notificationIcons.length - 1);
-        const currentIcon= notificationIcons.item(iconIndex);
+    //     const isLastIcon = iconIndex === notificationIcons.length -1;
+    //     const isFirstIcon = iconIndex === 0;
+    //     const lastIcon = notificationIcons.item(notificationIcons.length -1);
+    //     const nextIcon = notificationIcons.item(iconIndex + 1);
+    //     const previousIcon = notificationIcons.item(iconIndex - 1);
 
-        console.log(`is last icon: ${isLastIcon}`);
-        console.log(`length: ${notificationIcons.length}`);
-        console.log(`last icon index: ${notificationIcons.length -1}`);
-        console.log(`next icon: ${nextIcon}`);
-        console.log(lastIcon);
-        console.log(currentIcon);
-
-
-        if (event.key === "Tab") {
-            if (!isLastIcon) {
-                nextIcon.focus();
-                return;
-            } else {
-                firstIcon.focus();
-            }
-        } 
-    }
-
-    function openNotifications () {
-
-        notificationBtn.attributes['aria-expanded'].value = "true";
-        
-        notificationIcons.item(0).focus();
-        
-        notificationIcons.forEach((notificationIcon, iconIndex) => {
-            notificationIcon.addEventListener("keyup", (event) => {
-                console.log(iconIndex)
-                handleNotificationTabKeypress(event, iconIndex);
-            }
-             );
-        })
-        
-        notificationPopup.addEventListener('keyup', handleNotificationsEscapeKeypress);
-
-    }
+    //     if (event.key === "Tab") {
+            
+    //         if (isLastIcon) {
+    //             notificationIcons.item(0).focus();
+    //             console.log("focus first icon");
+                
+    //         } else {
+    //             notificationIcons.item(1).focus();
+    //             console.log("focus last icon");
+    //         }
+    //     } 
+    // }
+    
 
     function toggleNotifications () {
         const isExpanded = notificationBtn.attributes["aria-expanded"].value === "true";
@@ -172,9 +151,42 @@ function app() {
 
         if (isExpanded) {
             closeNotifications();
+            console.log("closed notifications");
         } else {
             openNotifications();
+            console.log("opened notifications");
         }
+
+    }
+
+    function openNotifications () {
+
+        notificationBtn.attributes['aria-expanded'].value = "true";
+        notificationIcons.item(0).focus();
+
+        
+        
+        notificationPopup.addEventListener('keyup', handleNotificationsEscapeKeypress);
+
+        // tab key press attempt
+        // console.log(notificationIcons);
+        // notificationIcons.forEach((notificationIcon, iconIndex) => {
+        //     notificationIcon.addEventListener("keyup", (event) => {
+        //         event.preventDefault();
+        //         handleNotificationTabKeypress(event, iconIndex);
+        //         console.log(iconIndex);
+        //         console.log(notificationIcon);
+        //     }
+        //      );
+        // })
+        
+        // notificationPopup.addEventListener('focusout', (event) => {
+        //     if (!notificationPopup.contains(event.relatedTarget) && event.relatedTarget !== notificationBtn) {
+        //         toggleNotifications();
+        //       }
+            
+        // }
+        // );
 
     }
 
@@ -217,9 +229,12 @@ function app() {
         setTimeout(() => {
             loadingSpinnerIcon.classList.add("display-none");
             completedIcon.classList.remove("display-none");
+            checkbox.ariaLabel = checkbox.ariaLabel.replace('as done', 'as not done');
         }, 500);
 
         checkbox.classList.add("checkbox-done");
+
+
     }
 
     function handleMarkAsNotDone (checkbox) {
@@ -233,9 +248,12 @@ function app() {
         setTimeout(() => {
             loadingSpinnerIcon.classList.add("display-none");
             notCompletedIcon.classList.remove("display-none");
+            checkbox.ariaLabel = checkbox.ariaLabel.replace('as not done', 'as done');
         }, 500);        
 
         checkbox.classList.remove("checkbox-done");
+
+
     }
 
     function handleMarkDoneOrNotDone (checkbox) {
@@ -285,15 +303,18 @@ function app() {
                 break;
         }
 
-        
+
     }
 
 
 
 
-    closeTrialCalloutBtn.addEventListener('click', () => { 
+    allCloseTrialCalloutBtns.forEach(button => {
+        button.addEventListener('click', () => { 
         trialCallout.classList.add('hidden');
+        })
     })
+    
 
     guideToggleBtn.addEventListener('click', () => {
         guideToggleArrow.forEach(arrow => {
@@ -324,10 +345,9 @@ function app() {
     notificationBtn.addEventListener('click', toggleNotifications)
 
     allCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('click', () => {
+        checkbox.addEventListener('click', (event) => {
             handleMarkDoneOrNotDone(checkbox);
             updateProgress();
-            // console.log(checkbox);
         });
     })
 
@@ -335,3 +355,7 @@ function app() {
 
 app();
 
+
+// how to close the menu by clicking elsewhere on the screen
+// fix handleNotificationTabKeypress()
+// open next card after marking check
