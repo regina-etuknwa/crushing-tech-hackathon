@@ -20,7 +20,10 @@ function app() {
     const allPopupCards = document.querySelectorAll(".popup-item");
 
     const allCheckboxes = document.querySelectorAll(".checkbox");
-    const completedIcons =document.querySelectorAll(".completed-icon");
+
+    const progressNum = document.querySelector(".progress-num");
+    const progressBar = document.querySelector(".progress-bar");
+    const progressBarFill = progressBar.querySelector(".progress-bar-fill");
 
 
     // how to close the menu by clicking elsewhere on the screen
@@ -245,6 +248,49 @@ function app() {
 
     }
 
+    function updateProgress(){
+
+        let progressCounter = 0;
+
+        allCheckboxes.forEach(checkbox => {
+            console.log(progressCounter);
+
+            if (checkbox.classList.contains("checkbox-done")) {
+                progressCounter++;
+            }
+        })
+
+        progressNum.innerHTML = progressCounter;
+
+        switch (progressCounter) {
+            case 0:
+                progressBarFill.attributes['width'].value = "0";
+                break;
+            case 1:
+                progressBarFill.attributes['width'].value = "14.4";
+                break;
+            case 2:
+                progressBarFill.attributes['width'].value = "28.8";
+                break;
+            case 3:
+                progressBarFill.attributes['width'].value = "43.2";
+                break;
+            case 4:
+                progressBarFill.attributes['width'].value = "57.6";
+                break;
+            case 5:
+                progressBarFill.attributes['width'].value = "72";
+                break;
+            default:
+                break;
+        }
+
+        
+    }
+
+
+
+
     closeTrialCalloutBtn.addEventListener('click', () => { 
         trialCallout.classList.add('hidden');
     })
@@ -280,7 +326,8 @@ function app() {
     allCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('click', () => {
             handleMarkDoneOrNotDone(checkbox);
-            console.log(checkbox);
+            updateProgress();
+            // console.log(checkbox);
         });
     })
 
