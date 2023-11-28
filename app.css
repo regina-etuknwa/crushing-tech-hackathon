@@ -429,6 +429,7 @@ svg {
     flex-shrink: 0;
     padding: 8px;
     width: 480px;
+    max-width: 100%;
     height: 32px;
     border-radius: 8px;
     border: 1px solid var(--s-200, #616161);
@@ -829,6 +830,10 @@ svg {
     cursor: pointer;
 }
 
+.close-trial-callout-btn-mobile {
+    display: none;
+}
+
 .close-img{
     width: 20px;
     height: 20px;
@@ -840,7 +845,7 @@ svg {
     gap: 16px;
     max-width: 800px;
     background-color: var(--white);
-    padding: 16px;
+    padding: 8px;
     border-radius: 18px;
     border: 1px solid var(--s-50, #DBDBDB);
     box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
@@ -849,13 +854,14 @@ svg {
 
 .guide-intro {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px;
 }
 
-.guide-header {
+.guide-info {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 4px;
+    flex-direction: column;
 }
 
 .guide-heading {
@@ -866,7 +872,46 @@ svg {
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 19.6px */
+    margin: 0;
 }
+
+.guide-description {
+    color: var(--font-dark, #303030);
+
+    /* Text-13/regular */
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 18.2px */
+    margin-bottom: 16px;
+    margin-top: 4px;
+}
+
+.guide-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-description {
+    color: var(--font-dark, #303030);
+    /* Text-12/regular */
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
+}
+
+.progress-bar {
+    width: 72px;
+    height: 4px;
+    fill: #E3E3E3;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
 
 .guide-toggle-button {
     border: none;
@@ -903,41 +948,6 @@ svg {
     display: none;
 }
 
-.guide-description {
-    color: var(--font-dark, #303030);
-
-    /* Text-13/regular */
-    font-family: Inter;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 140%; /* 18.2px */
-    margin-bottom: 16px;
-}
-
-.guide-progress {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.progress-description {
-    color: var(--font-dark, #303030);
-    /* Text-12/regular */
-    font-family: Inter;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%; /* 15.6px */
-}
-
-.progress-bar {
-    width: 72px;
-    height: 4px;
-    fill: #E3E3E3;
-    border-radius: 28px;
-    overflow: hidden;
-}
 
 .guide-popup {
     /* display: none; */
@@ -956,6 +966,8 @@ svg {
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+    max-width: 100%;
+    padding: 2px 0;
 }
 
 .popup-header {
@@ -1030,6 +1042,7 @@ svg {
     font-style: normal;
     font-weight: 500;
     line-height: 140%; /* 18.2px */
+    max-width: 100%;
 }
 
 .learn-more-link {
@@ -1142,6 +1155,59 @@ svg {
 
 .bg-white {
     background-color: var(--white);
+}
+
+@media (max-width: 600px) {
+
+    .search-bar {
+        max-width: 238px;
+    }
+
+    .notification-btn {
+        background-color: transparent;
+    }
+
+    .profile-name-nav {
+        display: none;
+    }
+
+    .menu-trigger {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .trial-callout {
+        border-radius: 0;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .trial-callout-mobile-setup {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .close-trial-callout-btn-mobile {
+        display: block;
+    }
+
+    .close-trial-callout-btn-desktop {
+        display: none;
+    }
+
+    .setup-guide-card {
+        border-radius: 0;
+    }
+
+    .popup-img {
+        display: none;
+    }
+
+    .popup-description {
+        max-width: 326px;
+    }
 }
 
 
