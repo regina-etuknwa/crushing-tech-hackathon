@@ -28,10 +28,15 @@ function app() {
     const progressBar = document.querySelector(".progress-bar");
     const progressBarFill = progressBar.querySelector(".progress-bar-fill");
 
+    const notMenuArea = document.querySelector(".not-menu-area");
+    const notNotificationArea = document.querySelector(".not-notification-area");
+
 
     function closeMenu () {
         menuTrigger.attributes['aria-expanded'].value = "false";
         menuTrigger.focus();
+
+        notMenuArea.removeEventListener('click', toggleMenu);
 
         // console.log("closed menu");
     }
@@ -80,21 +85,17 @@ function app() {
                 handleMenuArrowKeypress(event, menuItemIndex);
                 console.log(menuItemIndex);
             } )
-        })
+        });
 
-        // menu.addEventListener('focusout', (event) => {
-    //     if (!menu.contains(event.relatedTarget) && event.relatedTarget !== menuTrigger) {
-    //         toggleMenu();
-    //       }
-        
-    // }
-    // ); 
+        notMenuArea.addEventListener('click', toggleMenu);
+
     }
 
     function toggleMenu () {
         const isExpanded = menuTrigger.attributes["aria-expanded"].value === "true";
 
         menu.classList.toggle('menu-active');
+        notMenuArea.classList.toggle('menu-active');
 
         if (isExpanded) {
             closeMenu();
@@ -112,6 +113,8 @@ function app() {
         notificationBtn.attributes['aria-expanded'].value = "false";
         
         notificationBtn.focus();
+
+        notNotificationArea.removeEventListener('click', toggleNotifications);
     }
 
     function handleNotificationsEscapeKeypress (event) {
@@ -148,6 +151,8 @@ function app() {
     function toggleNotifications () {
         const isExpanded = notificationBtn.attributes["aria-expanded"].value === "true";
         notificationPopup.classList.toggle('notification-active');
+        notNotificationArea.classList.toggle('display-block');
+
 
         if (isExpanded) {
             closeNotifications();
@@ -163,11 +168,10 @@ function app() {
 
         notificationBtn.attributes['aria-expanded'].value = "true";
         notificationIcons.item(0).focus();
-
-        
-        
+ 
         notificationPopup.addEventListener('keyup', handleNotificationsEscapeKeypress);
 
+        notNotificationArea.addEventListener('click', toggleNotifications);
         // tab key press attempt
         // console.log(notificationIcons);
         // notificationIcons.forEach((notificationIcon, iconIndex) => {
@@ -180,13 +184,6 @@ function app() {
         //      );
         // })
         
-        // notificationPopup.addEventListener('focusout', (event) => {
-        //     if (!notificationPopup.contains(event.relatedTarget) && event.relatedTarget !== notificationBtn) {
-        //         toggleNotifications();
-        //       }
-            
-        // }
-        // );
 
     }
 
@@ -342,6 +339,7 @@ function app() {
     })
 
     menuTrigger.addEventListener('click', toggleMenu);
+
     notificationBtn.addEventListener('click', toggleNotifications)
 
     allCheckboxes.forEach(checkbox => {
