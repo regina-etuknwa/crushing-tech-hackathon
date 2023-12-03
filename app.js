@@ -214,11 +214,23 @@ function app() {
         // console.log(card);
     }
 
-    function handleMarkAsDone (checkbox) {
+    function allCheckboxesDone() {
+        let allDone = true;
+        allCheckboxes.forEach(checkbox => {
+            if(!checkbox.classList.contains("checkbox-done")){
+                allDone = false;
+            }
+        });
+        return allDone;
+    }
+
+    function handleMarkAsDone (checkbox, event) {
         const notCompletedIcon = checkbox.querySelector(".not-completed-icon");
         const loadingSpinnerIcon = checkbox.querySelector(".loading-spinner-icon");
         const completedIcon = checkbox.querySelector(".completed-icon");
 
+        const currentCard = checkbox.closest(".popup-item");
+        console.log(currentCard);
 
         notCompletedIcon.classList.add("display-none");
         loadingSpinnerIcon.classList.remove("display-none");
@@ -229,10 +241,57 @@ function app() {
             checkbox.ariaLabel = checkbox.ariaLabel.replace('as done', 'as not done');
         }, 500);
 
-        checkbox.classList.add("checkbox-done");
+        checkbox.classList.add("checkbox-done"); 
+        
+        
 
+        // close card body
+        hideCardBody(currentCard);
 
+        // open card body of next unmarked box
+        allCheckboxes.forEach((loopCheckbox, loopCheckboxIndex) => {
+
+            // use for loop to find currentBox
+            if(loopCheckbox == checkbox) {
+
+                let i = loopCheckboxIndex++;
+
+                //  use while loop to check for next unchecked
+                // if all are checked, do nothing
+                while ( !allCheckboxesDone() ) {
+                    console.log(allCheckboxesDone());
+                    console.log(`i = ${i}`);
+                    let iterCheckbox = allCheckboxes.item(i);
+                    console.log(iterCheckbox);
+
+                    // stop when box does not have "checkbox-done" class
+                    if(!iterCheckbox.classList.contains("checkbox-done")){
+
+                        allPopupCards.forEach((card) => { 
+                            hideCardBody(card);
+                        });
+
+                        showCardBody(iterCheckbox.closest(".popup-item"));
+                        iterCheckbox.focus();
+                        return;
+                    }
+
+                    if(i >= allCheckboxes.length - 1){
+                        i = 0;
+                    } else {
+                        i++;
+                    }
+                }
+
+            }
+
+        })
+
+         
+
+        event.stopPropagation();
     }
+
 
     function handleMarkAsNotDone (checkbox) {
         const notCompletedIcon = checkbox.querySelector(".not-completed-icon");
@@ -253,12 +312,12 @@ function app() {
 
     }
 
-    function handleMarkDoneOrNotDone (checkbox) {
+    function handleMarkDoneOrNotDone (checkbox, event) {
         const markedAsDone = checkbox.classList.contains("checkbox-done");
         if(markedAsDone){
             handleMarkAsNotDone(checkbox);
         } else {
-            handleMarkAsDone(checkbox)
+            handleMarkAsDone(checkbox, event)
         }
 
     }
@@ -330,8 +389,8 @@ function app() {
     })
 
     allPopupCards.forEach(card => {
-        card.addEventListener('click', () => {
-            allPopupCards.forEach((card) => {
+        card.addEventListener('click', function cardClick () {
+            allPopupCards.forEach((card) => { 
                 hideCardBody(card);
             });
             showCardBody(card);
@@ -344,7 +403,7 @@ function app() {
 
     allCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('click', (event) => {
-            handleMarkDoneOrNotDone(checkbox);
+            handleMarkDoneOrNotDone(checkbox, event);
             updateProgress();
         });
     })
@@ -353,7 +412,4 @@ function app() {
 
 app();
 
-
-// how to close the menu by clicking elsewhere on the screen
 // fix handleNotificationTabKeypress()
-// open next card after marking check
